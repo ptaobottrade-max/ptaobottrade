@@ -601,8 +601,9 @@ async def receive_slip(update, context):
         ]
     ])
 
+    for admin in ADMIN_IDS:
     await context.bot.send_photo(
-        chat_id=ADMIN_ID,
+        chat_id=admin,
         photo=photo,
         caption=f"📥 Slip from {username}\nID: {user.id}",
         reply_markup=keyboard
