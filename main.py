@@ -22,7 +22,7 @@ from telegram.ext import (
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 # แก้ ChatId
-ADMIN_ID = 7753207716
+ADMIN_IDS = [7753207716]
 DB_NAME = os.getenv("DB_PATH", "members.db")
 
 FREE_LIMIT = 2
@@ -457,7 +457,7 @@ async def start(update,context):
 )
 async def renew_cmd(update, context):
 
-    if update.effective_user.id != ADMIN_ID:
+    if update.effective_user.id not in ADMIN_IDS:
         return
 
     if len(context.args) != 2:
@@ -534,7 +534,7 @@ async def eng(update,context):
 
 async def dashboard(update,context):
 
-    if update.effective_user.id != ADMIN_ID:
+    if update.effective_user.id not in ADMIN_IDS:
         return
 
     conn = sqlite3.connect(DB_NAME)
@@ -711,7 +711,7 @@ async def stock_search(update,context):
 
 async def remove_cmd(update, context):
 
-    if update.effective_user.id != ADMIN_ID:
+    if update.effective_user.id not in ADMIN_IDS:
         return
 
     if not context.args:
