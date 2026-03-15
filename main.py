@@ -22,7 +22,7 @@ from telegram.ext import (
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 # แก้ ChatId
-ADMIN_IDS = [7753207716]
+ADMIN_IDS = [7753207716,7916012945]
 DB_NAME = os.getenv("DB_PATH", "members.db")
 
 FREE_LIMIT = 2
