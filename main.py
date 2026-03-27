@@ -25,7 +25,7 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 ADMIN_IDS = [7753207716,7916012945]
 DB_NAME = os.getenv("DB_PATH", "members.db")
 
-FREE_LIMIT = 2
+FREE_LIMIT = 3
 PREMIUM_PRICE = "68 บาท"
 RENEW_DAYS = 1
 
