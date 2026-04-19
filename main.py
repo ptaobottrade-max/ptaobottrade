@@ -656,58 +656,61 @@ async def stock_search(update,context):
         await update.message.reply_text("No data")
         return
 
-    premium = is_premium(user_id)
+    msg = premium_text(text, data, lang)
+    await update.message.reply_text(msg)
 
-    if not premium:
-        try:
+    # premium = is_premium(user_id)
+
+    # if not premium:
+    #     try:
     
-            used = check_usage(user_id)
+    #         used = check_usage(user_id)
     
-            if used >= FREE_LIMIT:
+    #         if used >= FREE_LIMIT:
     
-                if lang == "th":
-                    limit_msg = """🚫 คุณใช้โควตาวันนี้ครบแล้ว
+    #             if lang == "th":
+    #                 limit_msg = """🚫 คุณใช้โควตาวันนี้ครบแล้ว
     
-    แพ็กเกจ Free สามารถใช้งานได้ตามจำนวนที่กำหนดต่อวัน
-    หากต้องการใช้งานต่อแบบไม่จำกัด แนะนำอัปเกรดเป็น Premium ✨
+    # แพ็กเกจ Free สามารถใช้งานได้ตามจำนวนที่กำหนดต่อวัน
+    # หากต้องการใช้งานต่อแบบไม่จำกัด แนะนำอัปเกรดเป็น Premium ✨
     
-    📌 สิทธิ์ Premium:
-    • ใช้งานได้มากขึ้น / ไม่จำกัดตามแพ็กเกจ
-    • เข้าถึงฟีเจอร์พิเศษ
-    • ใช้งานได้เร็วและเสถียรกว่า
+    # 📌 สิทธิ์ Premium:
+    # • ใช้งานได้มากขึ้น / ไม่จำกัดตามแพ็กเกจ
+    # • เข้าถึงฟีเจอร์พิเศษ
+    # • ใช้งานได้เร็วและเสถียรกว่า
     
-    💎 สนใจสมัคร Premium พิมพ์ /payment
-    """
+    # 💎 สนใจสมัคร Premium พิมพ์ /payment
+    # """
     
-                else:  # EN default
-                    limit_msg = """🚫 You have reached today’s usage limit.
+    #             else:  # EN default
+    #                 limit_msg = """🚫 You have reached today’s usage limit.
     
-    The Free plan allows limited daily usage.
-    To continue using without limits, upgrade to Premium ✨
+    # The Free plan allows limited daily usage.
+    # To continue using without limits, upgrade to Premium ✨
     
-    📌 Premium Benefits:
-    • Higher / Unlimited usage (depending on package)
-    • Access to exclusive features
-    • Faster and more stable performance
+    # 📌 Premium Benefits:
+    # • Higher / Unlimited usage (depending on package)
+    # • Access to exclusive features
+    # • Faster and more stable performance
     
-    💎 To upgrade to Premium type /payment
-    """
+    # 💎 To upgrade to Premium type /payment
+    # """
     
-                await update.message.reply_text(limit_msg)
-                return
+    #             await update.message.reply_text(limit_msg)
+    #             return
     
-            increase_usage(user_id)
+    #         increase_usage(user_id)
     
-            msg = free_text(text, data, lang)
-            await update.message.reply_text(msg)
+    #         msg = free_text(text, data, lang)
+    #         await update.message.reply_text(msg)
     
-        except Exception as e:
-            print("FREE ERROR:", e)
-            await update.message.reply_text("SYSTEM ERROR")
+    #     except Exception as e:
+    #         print("FREE ERROR:", e)
+    #         await update.message.reply_text("SYSTEM ERROR")
     
-    else:
-        msg = premium_text(text, data, lang)
-        await update.message.reply_text(msg)
+    # else:
+    #     msg = premium_text(text, data, lang)
+    #     await update.message.reply_text(msg)
 
 
 async def remove_cmd(update, context):
