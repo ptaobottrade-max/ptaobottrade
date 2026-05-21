@@ -307,8 +307,6 @@ This bot helps you quickly check stock signals from technical indicators such as
 Just type a stock symbol directly in the chat.
 
 Example:
-/AAPL
-or
 AAPL
 
 Example result you will receive:
@@ -337,8 +335,6 @@ Commands:
 พิมพ์ชื่อหุ้นที่ต้องการดูได้เลยในแชท
 
 ตัวอย่าง:
-/AAPL
-หรือ
 AAPL
 
 ตัวอย่างผลลัพธ์ที่จะได้รับ:
