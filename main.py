@@ -297,6 +297,134 @@ def analyze_stock(symbol):
 
 
 # ================= TEXT =================
+def start_text_v2(lang="th"):
+    if lang == "en":
+        return """🤖 Welcome to Stock Bot
+
+This bot helps you quickly check stock signals from technical indicators such as Momentum, RSI, MACD, volatility, support, resistance, EMA, and 52-week range.
+
+✅ How to use
+Just type a stock symbol directly in the chat.
+
+Example:
+/AAPL
+or
+AAPL
+
+Example result you will receive:
+📊 Stock: AAPL
+💰 Price: latest market price
+⚡ Momentum: shows short-term strength
+📉 RSI: shows overbought / oversold zone
+📊 MACD: shows trend signal
+🚧 Resistance: nearby resistance level
+🛟 Support: nearby support level
+
+Commands:
+/start - Start / usage guide
+/payment - Upgrade to Premium
+/thai - Thai language
+/eng - English language
+/help - Help
+
+⚠️ Information is for decision support only. Not financial advice.
+"""
+
+    return """🤖 ยินดีต้อนรับสู่ Stock Bot
+
+บอทนี้ช่วยวิเคราะห์หุ้นแบบเข้าใจง่าย โดยดูจากสัญญาณทางเทคนิค เช่น Momentum, RSI, MACD, ความผันผวน, แนวรับ, แนวต้าน, EMA และกรอบราคา 52 สัปดาห์
+
+✅ วิธีใช้งาน
+พิมพ์ชื่อหุ้นที่ต้องการดูได้เลยในแชท
+
+ตัวอย่าง:
+/AAPL
+หรือ
+AAPL
+
+ตัวอย่างผลลัพธ์ที่จะได้รับ:
+📊 หุ้น: AAPL
+💰 ราคา: ราคาล่าสุด
+⚡ โมเมนตัม: ดูแรงของราคาในระยะสั้น
+📉 RSI: ดูว่าเริ่มร้อนแรงหรืออ่อนตัวเกินไปหรือไม่
+📊 MACD: ดูสัญญาณแนวโน้ม
+🚧 แนวต้าน: จุดที่ราคาอาจเจอแรงขาย
+🛟 แนวรับ: จุดที่ราคาอาจมีแรงซื้อกลับ
+
+คำสั่งที่ใช้ได้:
+/start - เริ่มต้น / ดูวิธีใช้งาน
+/payment - สมัคร Premium
+/thai - ภาษาไทย
+/eng - English
+/help - วิธีใช้งาน
+
+⚠️ ข้อมูลนี้ใช้เพื่อประกอบการตัดสินใจเท่านั้น ไม่ใช่คำแนะนำการลงทุน
+"""
+
+
+def payment_text_v2(lang="th"):
+    if lang == "en":
+        return f"""💎 Premium Upgrade
+
+Premium price: {PREMIUM_PRICE}
+
+Please transfer to:
+Account name: นาย ธงชัย ประเสริฐสัง
+Bank: TMBThanachart Bank (TTB)
+Account no.: 6532343883
+
+After payment:
+1. Send the payment slip image to this bot
+2. Type /paid followed by the real payer name
+
+Example:
+/paid Thongchai
+or
+/paid ธงชัย
+
+Important:
+• Use the real name shown on the transfer slip
+• Leave 1 space after /paid before typing the name
+• If /paid is not sent, the system cannot upgrade your account
+• If payment is made after 22:00, the upgrade may be processed the next day
+• Payment verification may take up to 12 hours
+• If there is any issue, contact the page: พี่เต่า investment
+"""
+
+    return f"""💎 สมัคร Premium
+
+ราคา Premium: {PREMIUM_PRICE}
+
+โอนเงินไปที่บัญชี:
+ชื่อบัญชี: นาย ธงชัย ประเสริฐสัง
+ธนาคาร: ทีเอ็มบีธนชาต (TTB)
+เลขบัญชี: 6532343883
+
+หลังโอนเงินแล้วให้ทำตามนี้:
+1. ส่งรูปสลิปเข้ามาในบอทนี้
+2. พิมพ์ /paid ตามด้วยชื่อจริงของผู้โอนเงิน
+
+ตัวอย่าง:
+/paid Thongchai
+หรือ
+/paid ธงชัย
+
+สำคัญ:
+• ต้องใช้ชื่อจริงที่ตรงกับสลิปโอนเงิน
+• ต้องเว้นวรรคหลัง /paid 1 ครั้งก่อนพิมพ์ชื่อ
+• ถ้าไม่พิมพ์ /paid ระบบจะตรวจสอบและอัปเกรดให้ไม่ได้
+• โอนหลัง 22:00 น. อาจได้รับการอัปเกรดในวันถัดไป
+• ระบบจะตรวจสอบภายใน 12 ชั่วโมง
+• หากมีปัญหา ติดต่อเพจ: พี่เต่า investment
+"""
+
+
+def payment_cta_text_v2(lang="th"):
+    if lang == "en":
+        return f"⭐ Upgrade to Premium for {PREMIUM_PRICE}\nType /payment to see payment instructions"
+    return f"⭐ อัปเกรดเป็น Premium ราคา {PREMIUM_PRICE}\nพิมพ์ /payment เพื่อดูวิธีสมัคร"
+
+
 def premium_text(symbol,d,lang):
 
     momentum_icon = "🟢" if d["momentum"] > 0 else "🔴"
@@ -413,8 +541,7 @@ def free_text(symbol,d,lang):
 
 ⚠️ ข้อมูลเพื่อเป็นข้อมูล ไม่ใช่คำแนะนำการลงทุน
 
-⭐ อัปเกรดเดือนละ {PREMIUM_PRICE}
-พิมพ์ /payment เพื่อสมัคร Premium
+{payment_cta_text_v2(lang)}
 """
 
     else:
@@ -435,8 +562,7 @@ Lower: {round(d['bb_lower'],2)}
 
 ⚠️ For information only. Not financial advice.
 
-⭐ Upgrade {PREMIUM_PRICE} / month
-Type /payment to upgrade
+{payment_cta_text_v2(lang)}
 """
 
 
@@ -445,16 +571,8 @@ async def start(update,context):
     user = update.effective_user
     update_username(user.id, user.username or user.first_name)
 
-    await update.message.reply_text(
-"""🤖 Stock Bot
-
-/start - เริ่มต้น
-/payment - สมัคร Premium
-/thai - ภาษาไทย
-/eng - English
-/help - วิธีใช้งาน
-"""
-)
+    lang = get_language(user.id)
+    await update.message.reply_text(start_text_v2(lang))
 async def renew_cmd(update, context):
 
     if update.effective_user.id not in ADMIN_IDS:
@@ -504,25 +622,8 @@ Premium ใช้ได้ไม่จำกัด
 )
 
 async def payment(update,context):
-    await update.message.reply_text(
-"""💳 โปรดชำระเงิน 68 บาท ไปที่บัญชี
-
-นาย ธงชัย ประเสริฐสัง
-ธนาคารทีเอ็มบีธนชาติ (TTB)
-เลขบัญชี 6532343883
-
-* หลังโอนเงินแล้ว โปรดทำตามขั้นตอนดังนี้
-* ส่งรูปภาพสลิปให้กับ bot
-* พิมพ์ /paid ชื่อจริงของผู้โอนเงินส่งใน bot
-* เช่น /paid Thongchai หรือ /paid ธงชัย
-* ถ้าพิมพ์ชื่อเล่นหรือชื่ออื่น ระบบจะตรวจสอบไม่ได้
-* ต้องเว้นวรรคหลัง /paid 1 ครั้งก่อนพิมพ์ชื่อ
-* ถ้าไม่กด /paid ชื่อผู้ชำระเงิน ระบบจะไม่อัพเกรด
-* หากใช้งานไม่ได้ ส่งสลิปแจ้งที่เพจ พี่เต่า investment
-* โอนหลัง 22.00 น. ระบบจะอัพเกรดวันถัดไป
-* ระบบจะตรวจสอบการโอนเงินภายใน 12 ชั่วโมง
-"""
-    )
+    lang = get_language(update.effective_user.id)
+    await update.message.reply_text(payment_text_v2(lang))
 
 async def thai(update,context):
     set_language(update.effective_user.id,"th")
@@ -756,10 +857,3 @@ def main():
 
 if __name__=="__main__":
     main()
-
-
-
-
-
-
-
