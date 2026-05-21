@@ -322,7 +322,6 @@ Example result you will receive:
 
 Commands:
 /start - Start / usage guide
-/payment - Upgrade to Premium
 /thai - Thai language
 /eng - English language
 /help - Help
@@ -353,7 +352,6 @@ AAPL
 
 คำสั่งที่ใช้ได้:
 /start - เริ่มต้น / ดูวิธีใช้งาน
-/payment - สมัคร Premium
 /thai - ภาษาไทย
 /eng - English
 /help - วิธีใช้งาน
@@ -363,59 +361,49 @@ AAPL
 
 
 def payment_text_v2(lang="th"):
-    if lang == "en":
-        return f"""💎 Premium Upgrade
 
-Premium price: {PREMIUM_PRICE}
+    if lang == "th":
+        return """
+🎉 ช่วงนี้เปิดให้ใช้งานฟรีครับ
 
-Please transfer to:
-Account name: นาย ธงชัย ประเสริฐสัง
-Bank: TMBThanachart Bank (TTB)
-Account no.: 6532343883
+ตอนนี้ทุกคนสามารถใช้งานระบบ Premium ได้ฟรี
+โดยไม่ต้องชำระเงิน ✅
 
-After payment:
-1. Send the payment slip image to this bot
-2. Type /paid followed by the real payer name
+สิ่งที่สามารถใช้งานได้:
+• วิเคราะห์หุ้นแบบเต็ม
+• แนวรับ / แนวต้าน
+• EMA / RSI / MACD
+• ใช้งานได้ไม่จำกัด
 
-Example:
-/paid Thongchai
-or
-/paid ธงชัย
+📌 เพียงพิมพ์ชื่อหุ้น เช่น
 
-Important:
-• Use the real name shown on the transfer slip
-• Leave 1 space after /paid before typing the name
-• If /paid is not sent, the system cannot upgrade your account
-• If payment is made after 22:00, the upgrade may be processed the next day
-• Payment verification may take up to 12 hours
-• If there is any issue, contact the page: พี่เต่า investment
+AAPL
+TSLA
+NVDA
+
+แล้วระบบจะวิเคราะห์ให้อัตโนมัติ 🚀
 """
 
-    return f"""💎 สมัคร Premium
+    else:
+        return """
+🎉 Premium access is temporarily FREE
 
-ราคา Premium: {PREMIUM_PRICE}
+You can now use all Premium features
+without any payment ✅
 
-โอนเงินไปที่บัญชี:
-ชื่อบัญชี: นาย ธงชัย ประเสริฐสัง
-ธนาคาร: ทีเอ็มบีธนชาต (TTB)
-เลขบัญชี: 6532343883
+Available features:
+• Full stock analysis
+• Support / Resistance
+• EMA / RSI / MACD
+• Unlimited usage
 
-หลังโอนเงินแล้วให้ทำตามนี้:
-1. ส่งรูปสลิปเข้ามาในบอทนี้
-2. พิมพ์ /paid ตามด้วยชื่อจริงของผู้โอนเงิน
+📌 Just type a stock symbol like:
 
-ตัวอย่าง:
-/paid Thongchai
-หรือ
-/paid ธงชัย
+AAPL
+TSLA
+NVDA
 
-สำคัญ:
-• ต้องใช้ชื่อจริงที่ตรงกับสลิปโอนเงิน
-• ต้องเว้นวรรคหลัง /paid 1 ครั้งก่อนพิมพ์ชื่อ
-• ถ้าไม่พิมพ์ /paid ระบบจะตรวจสอบและอัปเกรดให้ไม่ได้
-• โอนหลัง 22:00 น. อาจได้รับการอัปเกรดในวันถัดไป
-• ระบบจะตรวจสอบภายใน 12 ชั่วโมง
-• หากมีปัญหา ติดต่อเพจ: พี่เต่า investment
+and the bot will analyze it automatically 🚀
 """
 
 
@@ -616,14 +604,16 @@ AAPL
 TSLA
 NVDA
 
-Free ใช้ได้วันละ 2 ครั้ง
-Premium ใช้ได้ไม่จำกัด
 """
 )
 
 async def payment(update,context):
+
     lang = get_language(update.effective_user.id)
-    await update.message.reply_text(payment_text_v2(lang))
+
+    await update.message.reply_text(
+        payment_text_v2(lang)
+    )
 
 async def thai(update,context):
     set_language(update.effective_user.id,"th")
